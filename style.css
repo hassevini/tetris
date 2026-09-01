@@ -1,0 +1,373 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
+
+:root {
+  --bg: #0a0a12;
+  --panel: #14141f;
+  --ink: #000;
+  --paper: #e8e4d8;
+  --red: #e4000f;
+  --yellow: #ffd400;
+  --cyan: #00a3dd;
+  --green: #00a651;
+  --purple: #92278f;
+  --orange: #f7941e;
+  --blue: #2e3192;
+  --pixel: "Press Start 2P", monospace;
+  --mono: "VT323", "Courier New", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: var(--bg);
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px
+  );
+  background-size: 4px 4px;
+  color: var(--paper);
+  font-family: var(--mono);
+}
+
+.cabinet {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- telas de menu --- */
+.menu-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  text-align: center;
+  padding: 24px 20px;
+  background: var(--panel);
+  border: 4px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  max-width: 320px;
+  width: 100%;
+}
+
+.marquee {
+  margin: 4px 0 0;
+  font-family: var(--pixel);
+  font-size: 30px;
+  letter-spacing: 2px;
+  color: var(--yellow);
+  text-shadow:
+    3px 0 0 var(--ink),
+    -3px 0 0 var(--ink),
+    0 3px 0 var(--ink),
+    0 -3px 0 var(--ink),
+    4px 4px 0 var(--red);
+}
+.marquee.small {
+  font-size: 17px;
+}
+
+.blink {
+  margin: 0;
+  font-family: var(--pixel);
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--paper);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.menu-caption {
+  margin: 0 0 4px;
+  font-family: var(--pixel);
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #8a8a9a;
+}
+
+/* --- botões de modo --- */
+.mode-btn {
+  background: var(--cyan);
+  border: 3px solid var(--ink);
+  color: var(--ink);
+  padding: 12px 14px;
+  font-family: var(--pixel);
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition:
+    transform 0.05s steps(1),
+    box-shadow 0.05s steps(1);
+}
+.mode-btn:hover {
+  filter: brightness(1.08);
+}
+.mode-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.mode-btn .desc {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0;
+  color: #1a1a1a;
+  opacity: 0.75;
+  text-transform: none;
+}
+
+.mode-btn.survival {
+  background: var(--red);
+  color: var(--paper);
+}
+.mode-btn.survival .desc {
+  color: var(--paper);
+}
+.mode-btn.tower {
+  background: var(--blue);
+  color: var(--paper);
+}
+.mode-btn.tower .desc {
+  color: var(--paper);
+}
+
+.back-btn {
+  background: var(--panel);
+  border: 3px solid var(--ink);
+  color: var(--paper);
+  padding: 10px;
+  font-family: var(--pixel);
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 4px;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.back-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+/* --- layout do jogo --- */
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.board-holder {
+  position: relative;
+  flex: 0 0 auto;
+  margin: 0 auto;
+  order: 2;
+}
+
+#board {
+  display: block;
+  width: min(70vw, 260px);
+  height: auto;
+  aspect-ratio: 1 / 2;
+  background: #050508;
+  border: 4px solid var(--ink);
+  box-shadow:
+    6px 6px 0 var(--ink),
+    0 0 0 4px var(--paper) inset;
+}
+
+.panel {
+  flex: 0 0 auto;
+  width: 112px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.side-left {
+  order: 1;
+}
+.side-right {
+  order: 3;
+}
+
+.box {
+  background: var(--panel);
+  border: 3px solid var(--ink);
+  padding: 8px;
+  text-align: center;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.box h3 {
+  margin: 0 0 6px;
+  font-family: var(--pixel);
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: var(--yellow);
+  text-transform: uppercase;
+}
+
+#next,
+#hold {
+  display: block;
+  margin: 0 auto;
+  width: 60px;
+  height: 60px;
+  background: #050508;
+  border: 2px solid var(--ink);
+}
+
+.stat {
+  font-family: var(--mono);
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--green);
+}
+.sub {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #8a8a9a;
+  margin-top: 3px;
+}
+
+.controls {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--paper);
+  text-align: left;
+}
+.controls h3 {
+  text-align: center;
+}
+
+button {
+  background: var(--yellow);
+  border: 3px solid var(--ink);
+  color: var(--ink);
+  padding: 9px;
+  font-family: var(--pixel);
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition:
+    transform 0.05s steps(1),
+    box-shadow 0.05s steps(1);
+}
+button:hover {
+  filter: brightness(1.08);
+}
+button:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+#overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 5, 8, 0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  padding: 16px;
+}
+#overlay.show {
+  display: flex;
+}
+#overlay h2 {
+  margin: 0 0 4px;
+  font-family: var(--pixel);
+  font-size: 15px;
+  color: var(--red);
+  text-shadow: 2px 2px 0 var(--ink);
+}
+#overlay button {
+  max-width: 200px;
+}
+
+#survivalBox {
+  display: none;
+}
+#survivalBox.show {
+  display: block;
+}
+#survivalBox .stat {
+  color: var(--red);
+  font-size: 19px;
+}
+
+#towerBox {
+  display: none;
+}
+#towerBox.show {
+  display: block;
+}
+#towerBox .stat {
+  color: var(--cyan);
+  font-size: 19px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- responsivo --- */
+@media (max-width: 480px) {
+  .wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .board-holder {
+    order: 1;
+  }
+  .side-left,
+  .side-right {
+    order: 2;
+    width: 100%;
+    max-width: 280px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .side-left .box,
+  .side-right .box {
+    flex: 1 1 calc(50% - 5px);
+  }
+  .side-right button {
+    flex: 1 1 100%;
+  }
+  .marquee {
+    font-size: 22px;
+  }
+}

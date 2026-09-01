@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TETRIS</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="crt"></div>
+    <div class="scanline"></div>
+
+    <div class="cabinet">
+      <div id="startMenu" class="menu-screen">
+        <h1 class="marquee">TETRIS</h1>
+        <p class="blink">◆ INSIRA A MOEDA ◆</p>
+        <p class="menu-caption">SELECIONE O MODO</p>
+        <button class="mode-btn normal" onclick="startGame('normal')">
+          MODO NORMAL
+          <span class="desc">O clássico que encantou o mundo</span>
+        </button>
+        <button class="mode-btn survival" onclick="openMenu('survivalMenu')">
+          SOBREVIVÊNCIA
+          <span class="desc">Seja rápido ou sofra as consequências</span>
+        </button>
+        <button class="mode-btn tower" onclick="openMenu('towerMenu')">
+          MODO TORRE
+          <span class="desc"
+            >Uma torre, um objetivo: Limpe no menor tempo.</span
+          >
+        </button>
+      </div>
+
+      <div id="survivalMenu" class="menu-screen" style="display: none">
+        <h1 class="marquee small">SOBREVIVÊNCIA</h1>
+        <p class="menu-caption">ESCOLHA A DIFICULDADE</p>
+        <button
+          class="mode-btn survival"
+          onclick="startGame('survival', { difficulty: 'easy' })"
+        >
+          FÁCIL
+          <span class="desc">Linha a cada 12s, acelera devagar até 6s.</span>
+        </button>
+        <button
+          class="mode-btn survival"
+          onclick="startGame('survival', { difficulty: 'medium' })"
+        >
+          MÉDIO
+          <span class="desc">Linha a cada 9s, acelera até 4s.</span>
+        </button>
+        <button
+          class="mode-btn survival"
+          onclick="startGame('survival', { difficulty: 'hard' })"
+        >
+          DIFÍCIL
+          <span class="desc">Linha a cada 6s, acelera rápido até 2.5s.</span>
+        </button>
+        <button
+          class="mode-btn survival"
+          onclick="startGame('survival', { difficulty: 'insane' })"
+        >
+          INSANO
+          <span class="desc"
+            >Linha a cada 4s, acelera até 1.5s. Boa sorte.</span
+          >
+        </button>
+        <button class="back-btn" onclick="openMenu('startMenu')">
+          ‹ VOLTAR
+        </button>
+      </div>
+
+      <div id="towerMenu" class="menu-screen" style="display: none">
+        <h1 class="marquee small">TORRE</h1>
+        <p class="menu-caption">ESCOLHA A ALTURA</p>
+        <button
+          class="mode-btn tower"
+          onclick="startGame('tower', { height: 4 })"
+        >
+          BAIXA
+          <span class="desc">4 fileiras de buracos.</span>
+        </button>
+        <button
+          class="mode-btn tower"
+          onclick="startGame('tower', { height: 8 })"
+        >
+          MÉDIA
+          <span class="desc">8 fileiras de buracos.</span>
+        </button>
+        <button
+          class="mode-btn tower"
+          onclick="startGame('tower', { height: 12 })"
+        >
+          ALTA
+          <span class="desc">12 fileiras de buracos.</span>
+        </button>
+        <button
+          class="mode-btn tower"
+          onclick="startGame('tower', { height: 16 })"
+        >
+          EXTREMA
+          <span class="desc">16 fileiras. Quase sem espaço de manobra.</span>
+        </button>
+        <button class="back-btn" onclick="openMenu('startMenu')">
+          ‹ VOLTAR
+        </button>
+      </div>
+
+      <div class="wrap" id="gameWrap" style="display: none">
+        <div class="panel side-left">
+          <div class="box">
+            <h3>Segurar (C)</h3>
+            <canvas id="hold" width="100" height="100"></canvas>
+          </div>
+          <div class="box">
+            <h3>Próxima</h3>
+            <canvas id="next" width="100" height="100"></canvas>
+          </div>
+        </div>
+
+        <div class="board-holder">
+          <canvas id="board" width="240" height="480"></canvas>
+          <div id="overlay">
+            <h2 id="overlayTitle">GAME OVER</h2>
+            <button onclick="resetGame()">JOGAR NOVAMENTE</button>
+            <button class="back-btn" onclick="backToMenu()">MENU</button>
+          </div>
+        </div>
+
+        <div class="panel side-right">
+          <div class="box">
+            <h3>Pontos</h3>
+            <div class="stat" id="score">0</div>
+          </div>
+          <div class="box">
+            <h3>Nível</h3>
+            <div class="stat" id="level">1</div>
+          </div>
+          <div class="box">
+            <h3>Linhas</h3>
+            <div class="stat" id="lines">0</div>
+          </div>
+          <div class="box" id="survivalBox">
+            <h3>Próxima linha</h3>
+            <div class="stat" id="survivalTimer">-</div>
+            <div class="sub" id="survivalSub"></div>
+          </div>
+          <div class="box" id="towerBox">
+            <h3>Tempo</h3>
+            <div class="stat" id="towerTimer">0:00.0</div>
+            <div class="sub" id="towerSub"></div>
+          </div>
+          <div class="box controls">
+            <h3>Controles</h3>
+            ← → : mover<br />
+            ↓ : descer rápido<br />
+            ↑ : girar<br />
+            Espaço : queda instantânea<br />
+            C : segurar peça<br />
+            P : pausar
+          </div>
+          <button onclick="togglePause()" id="pauseBtn">PAUSAR</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
