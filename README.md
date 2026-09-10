@@ -45,37 +45,7 @@ tetris/
 
 ### ▶ Execução
 
-> **Atenção:** Raw sockets requerem permissões elevadas. Execute ambos os processos com `sudo`.
-> A interface de rede (`eth0`, `enp3s0`, etc.) deve ser passada como argumento.
-
-Opcionalmente, é possível passar um arquivo `.csv` de mapa **antes** da interface de rede para usar um mapa personalizado no lugar do padrão:
-
-**Na máquina do servidor:**
-```sh
-# Mapa padrão
-sudo ./server <interface_de_rede>
-
-# Mapa personalizado
-sudo ./server <caminho/para/mapa.csv> <interface_de_rede>
-```
-
-**Na máquina do cliente (conectada via cabo Ethernet):**
-```sh
-sudo ./client <interface_de_rede>
-```
-
-### ⚙ Comandos Úteis
-
-| Comando | Descrição |
-|---------|-----------|
-| `make` | Compila cliente e servidor |
-| `make client` | Compila apenas o cliente |
-| `make server` | Compila apenas o servidor |
-| `make clean` | Remove objetos intermediários e executáveis |
-
-<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
-
----
+Pode ser executado rodando o html diretamente no navegador de preferência
 
 ## 📬 Contato
 
