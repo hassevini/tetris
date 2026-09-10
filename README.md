@@ -6,7 +6,7 @@
 
 <br />
 <div align="center">
-  <h3 align="center">Tetris</h3>
+  <h3 align="center">🧩 Tetris</h3>
 
   <p align="center">
     Jogo estilo Tetris para Web contendo diferentes modos de jogo
@@ -53,7 +53,7 @@ hassevini — [github.com/hassevini](https://github.com/hassevini)
 
 E-mail - hassevini@gmail.com
 
-Link do projeto: [https://github.com/GiuTP/PacketMan](https://github.com/hassevini/tetris)
+Link do projeto: [https://github.com/hassevini/tetris](https://github.com/hassevini/tetris)
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
