@@ -43,7 +43,7 @@ tetris/
 
 ---
 
-### ▶ Execução
+## ▶ Execução
 
 Pode ser executado rodando o html diretamente no navegador de preferência
 
