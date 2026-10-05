@@ -116,6 +116,8 @@ let survivalNextIntensifyAt = survivalConfig.every;
 let TOWER_ROWS = 10;
 let towerElapsed = 0;
 
+let bag = [];
+
 // Sistema das peças
 function emptyGrid() {
   return Array.from({ length: ROWS }, () => Array(COLS).fill(null));
@@ -131,10 +133,17 @@ function freshPiece(type) {
   };
 }
 
+function refillBag() {
+  bag = Object.keys(SHAPES);
+  for (let i = bag.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [bag[i], bag[j]] = [bag[j], bag[i]];
+  }
+}
+
 function randomPiece() {
-  const keys = Object.keys(SHAPES);
-  const type = keys[Math.floor(Math.random() * keys.length)];
-  return freshPiece(type);
+  if (bag.length === 0) refillBag();
+  return freshPiece(bag.pop());
 }
 
 function rotateCells(cells) {
@@ -444,6 +453,7 @@ function update(time = 0) {
 
 function resetGame() {
   grid = emptyGrid();
+  bag = [];
   if (mode === "tower") buildTower();
   score = 0;
   level = 1;
